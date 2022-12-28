@@ -1,0 +1,23 @@
+@use 'reset';
+@use 'defaults';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  --fg-prim: #ffffff;
+  --fg-sec: #950101;
+  --fg-ter: #FF0000;
+  --fg-err: #e01948;
+  --bg-prim: #161616;
+  --bg-sec: #3a3a3a;
+  --bg-ter: #3D0000;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 1.1rem;
+  font-family: 'Roboto', sans-serif;
+
+  color: var(--fg-prim);
+  background-color: var(--bg-prim);
+}

@@ -1,0 +1,30 @@
+button:not(.no-default) {
+  padding: .5rem;
+  margin: .5rem;
+
+  background-color: var(--bg-prim);
+  border: 1px solid var(--bg-sec);
+  border-radius: 5px;
+  box-shadow: 20px 20px 60px #2f233d,
+    -20px -20px 60px #3f2f53;
+  cursor: pointer;
+}
+
+a:not(.no-default) {
+  text-decoration: none;
+  border-bottom: 1px solid var(--fg-ter);
+  transition: color 200ms ease-in-out, transform 200ms ease-in-out;
+  display: inline-block;
+
+  &:hover {
+    color: var(--fg-sec);
+    transform: translate(-1px, -1px);
+  }
+}
+
+input:not(.no-default) {
+  background: var(--bg-prim);
+  border: 1px solid var(--bg-sec);
+  border-radius: 5px;
+  padding: .5rem;
+}
