@@ -7,16 +7,25 @@
 
 	let form: HTMLFormElement;
 	let isInvalid = false;
+	let hasUnknownError = false;
 	let isLoading = false;
 
 	$: if ($isLoggedIn) $goto('/');
 
 	const onSubmit = async () => {
 		isLoading = true;
-		const response = await fetch(`${ENVIRONMENT.API_PATH}/authentication/token`, {
-			method: 'post',
-			body: new FormData(form),
-		});
+		let response: Response;
+		try {
+			response = await fetch(`${ENVIRONMENT.API_PATH}/authentication/token`, {
+				method: 'post',
+				body: new FormData(form),
+			});
+		} catch (error) {
+			hasUnknownError = true;
+			isLoading = false;
+			isInvalid = false;
+			return;
+		}
 
 		if (response.status === 401) {
 			isInvalid = true;
@@ -45,6 +54,10 @@
 
 	{#if isInvalid}
 		<p class="error">Invalid username or password</p>
+	{/if}
+
+	{#if hasUnknownError}
+		<p class="error">An unknown error occurred</p>
 	{/if}
 
 	{#if isLoading}

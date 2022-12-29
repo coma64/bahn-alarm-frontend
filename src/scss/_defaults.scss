@@ -54,10 +54,15 @@ a:not(.no-default) {
 }
 
 input:not(.no-default) {
-  background: var(--bg-prim);
-  border: 1px solid var(--bg-sec);
+  background: colors.$bg-prim;
+  border: 1px solid colors.$bg-sec;
   border-radius: 5px;
   padding: .5rem;
+
+  &:focus-visible {
+    outline: none;
+    border: 1px solid colors.$fg-ter;
+  }
 }
 
 label:not(.no-default) {

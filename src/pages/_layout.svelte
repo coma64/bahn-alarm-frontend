@@ -26,7 +26,7 @@
 </script>
 
 <header>
-	<h1><a class="no-default" href={$url('/')}>Bahn Alaaaarm</a></h1>
+	<h1><a class="no-default" href={$url('/')}><span class="bahn-red">Bahn</span> Alaaaarm</a></h1>
 
 	<div class="info">
 		{#if $isLoggedIn}
@@ -44,6 +44,11 @@
 {/if}
 
 <style lang="scss">
+	@use 'src/scss/colors';
+
+	.bahn-red {
+		color: colors.$fg-ter;
+	}
 	header {
 		padding: 1rem;
 		margin-bottom: 1rem;
