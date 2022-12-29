@@ -1,8 +1,8 @@
 import { derived, writable } from 'svelte/store';
 
 export interface User {
-  id: number;
-  name: string;
+	id: number;
+	name: string;
 }
 
 export const user = writable<User | undefined>(undefined);

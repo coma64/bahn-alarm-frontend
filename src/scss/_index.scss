@@ -8,9 +8,10 @@
   --fg-sec: #950101;
   --fg-ter: #FF0000;
   --fg-err: #e01948;
-  --bg-prim: #161616;
+  --bg-prim: #191919;
   --bg-sec: #3a3a3a;
   --bg-ter: #3D0000;
+  --bg-action: #007bff;
 }
 
 body {
@@ -20,4 +21,8 @@ body {
 
   color: var(--fg-prim);
   background-color: var(--bg-prim);
+
+  --sk-color: #ff2b2b;
+  --sk-size: 7.5rem;
+  --wander-cube-size: 20%;
 }

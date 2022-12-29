@@ -1,13 +1,44 @@
-button:not(.no-default) {
-  padding: .5rem;
-  margin: .5rem;
+@use 'colors';
+@use 'sass:color';
 
-  background-color: var(--bg-prim);
+@mixin _default-button($bg) {
+  font-size: 1rem;
+  display: inline-block;
+  padding: .5rem;
+  background-color: $bg;
   border: 1px solid var(--bg-sec);
   border-radius: 5px;
-  box-shadow: 20px 20px 60px #2f233d,
-    -20px -20px 60px #3f2f53;
+  box-shadow:  9px 9px 18px #111111,
+  -9px -9px 18px #1b1b1b;
   cursor: pointer;
+
+  transition: background-color 200ms ease-in-out;
+
+
+  &.icon {
+    padding: .3rem;
+    border-radius: 2rem;
+  }
+
+  &:hover {
+    background-color: color.adjust($bg, $lightness: 5%);
+  }
+
+  &:active {
+    background-color: color.adjust($bg, $lightness: 10%);
+  }
+}
+
+button:not(.no-default), .button {
+  @include _default-button(colors.$bg-prim);
+}
+
+button:not(.no-default)[type="submit"] {
+  @include _default-button(colors.$bg-action);
+}
+
+button:not(.no-default)[type="reset"], button:not(.no-default).cancel, .button.cancel {
+  @include _default-button(colors.$bg-cancel);
 }
 
 a:not(.no-default) {
@@ -27,4 +58,20 @@ input:not(.no-default) {
   border: 1px solid var(--bg-sec);
   border-radius: 5px;
   padding: .5rem;
+}
+
+label:not(.no-default) {
+  white-space: nowrap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  &:not(.no-default) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.error {
+  color: var(--fg-err);
+  text-align: center;
 }
