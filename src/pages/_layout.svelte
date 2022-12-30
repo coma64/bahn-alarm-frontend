@@ -6,9 +6,11 @@
 	import { storage } from '$lib/stores/storage';
 	import { authHeaders } from '$lib/stores/auth';
 	import LoadingSpinner from '$lib/loadingSpinner.svelte';
+	import { registerPushNotifications } from '$lib/register-push-notifications';
 
 	$: if (!$storage.jwt && !$page.path.startsWith('/login')) $goto('/login');
 	$: if ($isLoggedIn && !$page.path.startsWith('/dashboard')) $goto('/dashboard');
+	$: if ($user) registerPushNotifications();
 
 	const fetchUser = async () => {
 		const response = await fetch(`${ENVIRONMENT.API_PATH}/authentication/me`, {

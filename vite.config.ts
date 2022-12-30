@@ -1,10 +1,22 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import preprocess from 'svelte-preprocess';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+	build: {
+		rollupOptions: {
+			input: {
+				main: resolve(__dirname, 'index.html'),
+				'custom-service-worker': resolve(__dirname, 'service-worker/main.ts'),
+			},
+			output: {
+				entryFileNames: '[name].js',
+			},
+		},
+	},
 	server: {
 		port: 5000,
 	},
@@ -15,6 +27,10 @@ export default defineConfig({
 		}),
 		VitePWA({
 			includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+			registerType: 'autoUpdate',
+			workbox: {
+				importScripts: ['custom-service-worker.js'],
+			},
 			manifest: {
 				name: 'Bahn Alaaaarm',
 				short_name: 'BahnAlarm',
