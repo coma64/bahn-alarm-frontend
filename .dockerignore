@@ -1,0 +1,6 @@
+node_modules
+.routify
+dist
+.idea
+logo
+.git
