@@ -24,7 +24,7 @@ jobs:
         uses: a7ul/tar-action@v1.1.0
         with:
           files: ./dist/
-        outPath: dist.tar.gz
+          outPath: dist.tar.gz
 
       - name: Create github release
         uses: marvinpinto/action-automatic-releases@latest
