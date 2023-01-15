@@ -23,6 +23,7 @@ jobs:
       - name: Compress dist folder
         uses: a7ul/tar-action@v1.1.0
         with:
+          command: c
           files: ./dist/
           outPath: dist.tar.gz
 
