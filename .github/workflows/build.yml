@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install pnpm and dependencies
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: true
+
+      - name: Run pnpm build
+        run: pnpm build
+
+      - name: Compress dist folder
+        uses: a7ul/tar-action@v1.1.0
+        with:
+          files: ./dist/
+        outPath: dist.tar.gz
+
+      - name: Create github release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: dist.tar.gz
